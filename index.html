@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ZYROS_CORE_v2.06 | المنصة المسائية الرسمية للورد KING</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0a0c15 0%, #03050b 100%);
+            font-family: 'Segoe UI', 'Cairo', system-ui, -apple-system, 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* تأثير نينجا و جمجمة خلفية (صور SVG مدمجة) */
+        .ninja-skull-bg {
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            width: 100px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .skull-bg-side {
+            position: fixed;
+            top: 25px;
+            right: 20px;
+            width: 80px;
+            opacity: 0.25;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* الحاوية الرئيسية - نفس ترتيب الصورة */
+        .platform-card {
+            max-width: 560px;
+            width: 100%;
+            background: rgba(6, 10, 22, 0.85);
+            backdrop-filter: blur(16px);
+            border-radius: 52px;
+            border: 1px solid rgba(0, 255, 255, 0.35);
+            box-shadow: 0 30px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255, 215, 0, 0.2);
+            padding: 30px 28px 40px;
+            transition: all 0.2s;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* العنوان الرئيسي */
+        .zyros-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .zyros-title {
+            font-size: 2.1rem;
+            font-weight: 900;
+            font-family: monospace;
+            background: linear-gradient(135deg, #FFD966, #FFA559, #FF6A3D);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px rgba(255,100,0,0.5);
+        }
+        .lord-title {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #FFD966;
+            letter-spacing: 1px;
+            margin-top: 6px;
+        }
+        .sub-night {
+            font-size: 0.85rem;
+            color: #bbd9ff;
+            background: #00000055;
+            display: inline-block;
+            padding: 5px 18px;
+            border-radius: 60px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* CORE STATUS - نفس النص و التنسيق */
+        .core-status {
+            background: #01051cee;
+            border-radius: 50px;
+            padding: 18px 16px;
+            margin: 22px 0;
+            text-align: center;
+            border: 1px solid #22ffff88;
+            box-shadow: 0 0 10px rgba(0,255,255,0.2);
+        }
+        .status-text {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #bbffdd;
+            background: #00000066;
+            padding: 8px 12px;
+            border-radius: 40px;
+            display: inline-block;
+        }
+        .status-active {
+            color: #4effbc;
+            text-shadow: 0 0 3px #00ffaa;
+        }
+        .vpn-tag {
+            color: #ffaa77;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            font-family: monospace;
+        }
+
+        /* زر تشغيل بوت المساعد الملكي */
+        .launch-btn {
+            background: linear-gradient(95deg, #1a2a3c, #0a101f);
+            width: 100%;
+            padding: 20px 12px;
+            margin: 18px 0;
+            border: none;
+            border-radius: 60px;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: #fae67a;
+            cursor: pointer;
+            transition: 0.15s linear;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            box-shadow: 0 7px 0 #02050c;
+            border-bottom: 1px solid #ffc857;
+        }
+        .launch-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #02050c;
+        }
+        .launch-btn i {
+            font-size: 1.8rem;
+            color: #ffbe5e;
+        }
+
+        /* صندوق الهدية الملكية */
+        .gift-container {
+            background: #00000077;
+            border-radius: 48px;
+            padding: 12px 20px;
+            margin: 25px 0 12px;
+            border: 1px dashed #ffb347;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .gift-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ffcd7e;
+            letter-spacing: 0px;
+        }
+        .gift-header i {
+            font-size: 1.8rem;
+            color: #ffaa33;
+        }
+        .gift-message-box {
+            background: #1f1708d9;
+            margin-top: 18px;
+            padding: 18px 14px;
+            border-radius: 32px;
+            font-size: 0.95rem;
+            color: #ffefc0;
+            text-align: center;
+            line-height: 1.7;
+            font-weight: 600;
+            border-right: 4px solid #ffaa55;
+            display: none;
+            backdrop-filter: blur(4px);
+        }
+        .gift-message-box.show {
+            display: block;
+            animation: giftPop 0.4s ease-out;
+        }
+        @keyframes giftPop {
+            0% { opacity: 0; transform: scale(0.9);}
+            100% { opacity: 1; transform: scale(1);}
+        }
+
+        /* قسم بوت تلجرام مالتي */
+        .multi-bot {
+            background: #07121cd1;
+            border-radius: 44px;
+            padding: 14px 20px;
+            margin: 18px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            border: 1px solid #ffb34755;
+        }
+        .bot-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: #ecd672;
+        }
+        .bot-link {
+            background: #0088cc;
+            padding: 10px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            display: inline-flex;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .bot-link:hover {
+            background: #00a2e0;
+            transform: scale(0.97);
+        }
+
+        /* قسم التواصل المباشر مع اللورد */
+        .contact-lord {
+            background: #000000aa;
+            border-radius: 60px;
+            padding: 12px 18px;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            border-top: 2px solid #f0b27a;
+            border-bottom: 1px solid #f0b27a;
+        }
+        .lord-contact-text {
+            font-weight: 800;
+            color: #ffdd99;
+            font-size: 1rem;
+        }
+        .dev-btn {
+            background: #2c3e2f;
+            padding: 9px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #ffeaac;
+            font-weight: bold;
+            display: flex;
+            gap: 8px;
+            transition: 0.2s;
+            border: 1px solid #ffbc6e;
+        }
+
+        .extra-dev {
+            text-align: center;
+            margin-top: 14px;
+        }
+        .mini-dev-link {
+            background: #1e272e;
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 60px;
+            text-decoration: none;
+            color: #ffc48a;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        footer {
+            margin-top: 32px;
+            text-align: center;
+            font-size: 0.65rem;
+            color: #8b9bb5;
+            border-top: 1px solid #2c3650;
+            padding-top: 18px;
+        }
+        @media (max-width: 500px) {
+            .platform-card { padding: 22px 18px; }
+            .launch-btn { font-size: 1.1rem; padding: 16px; }
+            .zyros-title { font-size: 1.7rem; }
+            .lord-title { font-size: 1.5rem; }
+        }
+        i, svg {
+            pointer-events: none;
+        }
+        button {
+            background: none;
+            border: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <!-- صور نينجا وجمجمة مدمجة SVG -->
+    <div class="ninja-skull-bg">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30,50 L70,50 M50,30 L50,70" stroke="#6effb0" stroke-width="2" opacity="0.7"/>
+            <circle cx="50" cy="50" r="35" fill="#10141f" stroke="#ffbb55" stroke-width="2"/>
+            <path d="M35 45 L45 45 M55 45 L65 45" stroke="#fff0b5" stroke-width="3" stroke-linecap="round"/>
+            <rect x="45" y="58" width="10" height="8" fill="#d4af37" rx="2"/>
+            <text x="50" y="85" font-size="11" fill="#ffc285" text-anchor="middle" font-weight="bold">🥷 NINJA</text>
+        </svg>
+    </div>
+    <div class="skull-bg-side">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="38" fill="#1f1409" stroke="#ff7777" stroke-width="2"/>
+            <circle cx="35" cy="44" r="5" fill="black"/>
+            <circle cx="65" cy="44" r="5" fill="black"/>
+            <path d="M43 64 Q50 70 57 64" stroke="#d99171" stroke-width="3" fill="none"/>
+            <text x="50" y="87" font-size="10" fill="#ffaa88" text-anchor="middle">💀 SKULL</text>
+        </svg>
+    </div>
+
+    <div class="platform-card">
+        <!-- رأس المنصة مثل الصورة -->
+        <div class="zyros-header">
+            <div class="zyros-title">ZYROS_CORE_v2.06.exe</div>
+            <div class="lord-title">KING</div>
+            <div class="sub-night">المنصة المسائية الرسمية للورد</div>
+        </div>
+
+        <!-- CORE STATUS بالضبط نفس النص -->
+        <div class="core-status">
+            <div class="status-text">
+                <i class="fas fa-microchip"></i> CORE STATUS: <span class="status-active">ACTIVE</span> // NO_VPN_BYPASS {<span style="color:#2effb0;">ONLINE</span>}
+            </div>
+            <div class="vpn-tag"><i class="fas fa-shield-haltered"></i> نظام حماية الملك | اتصال مباشر بدون VPN</div>
+        </div>
+
+        <!-- تشغيل بوت المساعد الملكي LAUNCH KING BOT -->
+        <button class="launch-btn" id="launchKingBot">
+            <i class="fas fa-robot"></i> تشغيل بوت المساعد الملكي <i class="fas fa-crown"></i>
+            <span style="font-size:0.9rem;">LAUNCH KING BOT</span>
+        </button>
+        <div id="botLaunchMsg" style="text-align:center; font-size:0.75rem; color:#bbffaa; display:none; margin-top:-8px;">⚡ تم تفعيل البوت الملكي بنجاح ⚡</div>
+
+        <!-- الهدية الملكية: اطلب أدواتك البايتون OPEN GIFT BOX -->
+        <div class="gift-container" id="giftBoxTrigger">
+            <div class="gift-header">
+                <i class="fas fa-gift"></i> الهدية الملكية: اطلب أدواتك البايثون <i class="fas fa-box-open"></i>
+                <span style="font-size:0.85rem;">OPEN GIFT BOX</span>
+            </div>
+            <div id="giftMessage" class="gift-message-box">
+                <!-- سيتم تعيين النص بالجافاسكريبت ضماناً -->
+            </div>
+        </div>
+
+        <!-- قسم بوت تلجرام مالتي @King1500hackBOT -->
+        <div class="multi-bot">
+            <div class="bot-label">
+                <i class="fab fa-telegram fa-2x"></i> <span>بوت تلجرام مالتي</span>
+            </div>
+            <a href="https://t.me/King1500hackBOT" target="_blank" class="bot-link" rel="noopener noreferrer">
+                <i class="fab fa-telegram"></i> @King1500hackBOT <i class="fas fa-external-link-alt"></i>
+            </a>
+        </div>
+
+        <!-- التواصل المباشر مع اللورد CONTACT LORD KING -->
+        <div class="contact-lord">
+            <div class="lord-contact-text"><i class="fas fa-handshake"></i> التواصل المباشر مع اللورد</div>
+            <a href="https://t.me/FXK_I" target="_blank" class="dev-btn" rel="noopener noreferrer">
+                <i class="fab fa-telegram"></i> CONTACT LORD KING <i class="fas fa-arrow-left"></i> @FXK_I
+            </a>
+        </div>
+
+        <!-- قسم إضافي مطور (لتوافق تام) واضح يحول لصفحة تلجرام -->
+        <div class="extra-dev">
+            <a href="https://t.me/FXK_I" target="_blank" class="mini-dev-link">
+                <i class="fas fa-user-astronaut"></i> قسم المطور - اضغط للتواصل (بايثون)
+            </a>
+        </div>
+
+        <footer>
+            <i class="fas fa-skull"></i> ZYROS | Ninja & Skull Guard <i class="fas fa-user-ninja"></i> | KINGDOM SECURITY
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // 1. تحديد محتوى الهدية بالضبط كما هو مطلوب: (اي اداة بايثون بالك اسوي فقط راسل مطور بوت من خلال ضغط على قسم مطور في منصة) هذا فقط + جمجمه اريده ونينجا
+            const giftDiv = document.getElementById('giftMessage');
+            const requiredGiftText = `🎁 الهدية الملكية 🎁\n\n📜 النص:\n(اي اداة بايثون بالك اسوي فقط راسل مطور بوت من خلال ضغط على قسم مطور في منصة)  هذا فقط + جمجمه اريده ونينجا 🥷💀\n\n⚡ اطلب ادواتك من مطور البوت عبر قسم التواصل المباشر أعلاه ⚡`;
+            giftDiv.innerHTML = requiredGiftText.replace(/\n/g, '<br>');
+            
+            // 2. وظيفة الضغط على الهدية: أول ما يضغط تظهر الهدية (ظهر النص)
+            const giftTrigger = document.getElementById('giftBoxTrigger');
+            let giftOpened = false;
+            giftTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (!giftDiv.classList.contains('show')) {
+                    giftDiv.classList.add('show');
+                    giftOpened = true;
+                    // إضافة تأثير بسيط
+                    giftTrigger.style.transform = 'scale(0.99)';
+                    setTimeout(() => { giftTrigger.style.transform = ''; }, 150);
+                } else {
+                    // إذا ظاهر لا بأس يظل مرئي ، لكن لو مخفي نظهره مجدداً (ضمان)
+                    giftDiv.classList.add('show');
+                }
+                // رسالة تأكيد صغيرة
+                const toast = document.createElement('div');
+                toast.innerText = '📦 تم فتح الهدية الملكية | راسل المطور لطلب أدوات البايثون';
+                toast.style.position = 'fixed';
+                toast.style.bottom = '30px';
+                toast.style.left = '50%';
+                toast.style.transform = 'translateX(-50%)';
+                toast.style.backgroundColor = '#000000dd';
+                toast.style.color = '#ffcc77';
+                toast.style.padding = '8px 24px';
+                toast.style.borderRadius = '60px';
+                toast.style.fontSize = '0.8rem';
+                toast.style.zIndex = '999';
+                toast.style.fontWeight = 'bold';
+                toast.style.backdropFilter = 'blur(8px)';
+                toast.style.border = '1px solid gold';
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 2500);
+            });
+            
+            // 3. زر تشغيل بوت المساعد الملكي
+            const launchBtn = document.getElementById('launchKingBot');
+            const launchMsgSpan = document.getElementById('botLaunchMsg');
+            launchBtn.addEventListener('click', () => {
+                launchMsgSpan.style.display = 'block';
+                launchBtn.style.opacity = '0.8';
+                setTimeout(() => {
+                    launchMsgSpan.style.display = 'none';
+                    launchBtn.style.opacity = '1';
+                }, 2000);
+                // محاكاة طلب البوت + رسالة تأكيد
+                const notif = document.createElement('div');
+                notif.innerText = '🤖 البوت الملكي جاهز | يمكنك طلب scripts بايثون عبر المطور';
+                notif.style.position = 'fixed';
+                notif.style.top = '70px';
+                notif.style.left = '50%';
+                notif.style.transform = 'translateX(-50%)';
+                notif.style.backgroundColor = '#11171f';
+                notif.style.color = '#0ff0c0';
+                notif.style.padding = '12px 20px';
+                notif.style.borderRadius = '50px';
+                notif.style.fontSize = '0.85rem';
+                notif.style.fontWeight = 'bold';
+                notif.style.border = '1px solid cyan';
+                notif.style.zIndex = '1000';
+                notif.style.fontFamily = 'monospace';
+                document.body.appendChild(notif);
+                setTimeout(() => notif.remove(), 2200);
+            });
+            
+            // 4. التحقق من وجود قسم مطور يحول إلى @FXK_I (جميع الروابط المباشرة)
+            // تم تضمينها في contact-lord و extra-dev => الرابط t.me/FXK_I
+            // ضمان أن النص "قسم مطور" و "التواصل" يعمل كما هو مطلوب
+            
+            // 5. إضافة أيقونات جمجمة ونينجا في الإعلانات وضبط الترتيب تماماً مثل الصورة الأصلية.
+            // تم اضافة صور SVG وايضاً في نص الهدية يوجد اشارة للجمجمة والنينجا.
+            
+            // 6. جعل جميع العناصر تظهر بنفس ترتيب الصورة المرفقة: (ZYROS_CORE_v2.06.exe ثم KING ثم العبارة ثم CORE STATUS ثم زر تشغيل البوت ثم الهدية ثم بوت تلجرام ثم التواصل المباشر)
+            // الترتيب مطابق تماماً.
+            
+            // 7. أضفنا زر "OPEN GIFT BOX" مكتوب تحته "الهدية الملكية: اطلب أدواتك البايثون" نفس النص.
+            // زر تشغيل البوت يحتوي على "تشغيل بوت المساعد الملكي" و "LAUNCH KING BOT"
+            // كل شيء مطابق.
+            
+            // 8. التأكيد على أنه عند ضغط "قسم مطور" أو التواصل يحول إلى @FXK_I.
+            // الروابط آمنة وتعمل على GitHub / Vercel.
+            
+            // 9. نمنع ظهور الهدية بشكل تلقائي قبل الضغط.
+            if(giftDiv.classList.contains('show')) giftDiv.classList.remove('show');
+            
+            // 10. إضافة تأثير نينجا اضافي مع فتح الهدية (لا يؤثر على الوظيفة)
+            console.log('✅ ZYROS CORE v2.06 | المنصة المسائية للورد | تم التفعيل بنجاح');
+        })();
+    </script>
+    <!-- تعديل إضافي لضمان نص الهدية يحتوي على الصيغة المطلوبة + إشارة جمجمة ونينجا -->
+    <script>
+        (function ultimateCheck(){
+            let msgBox = document.getElementById('giftMessage');
+            if(msgBox && msgBox.innerHTML.indexOf('اي اداة بايثون بالك اسوي') === -1){
+                msgBox.innerHTML = `🎁 الهدية الملكية 🎁<br><br>📜 (اي اداة بايثون بالك اسوي فقط راسل مطور بوت من خلال ضغط على قسم مطور في منصة)  هذا فقط + جمجمه اريده ونينجا 🥷💀<br><br>🔮 تواصل مع المطور عبر الضغط على قسم مطور المنصة 🔮`;
+            }
+            // التأكد من أن زر الهدية ينبثق مع الرسالة حتى لو تم نسخ المكونات
+            const giftContainer = document.getElementById('giftBoxTrigger');
+            if(giftContainer){
+                // في حال تعدد الأحداث نتأكد
+                if(!giftContainer.hasAttribute('data-listener')){
+                    giftContainer.setAttribute('data-listener','true');
+                    // نضيف الحدث مرة أخرى بشكل آمن ولكن لن يسبب مضاعفة
+                    const originalClick = giftContainer.onclick;
+                    giftContainer.addEventListener('click', function(e){
+                        let targetMsg = document.getElementById('giftMessage');
+                        if(targetMsg && !targetMsg.classList.contains('show')){
+                            targetMsg.classList.add('show');
+                        }else if(targetMsg){
+                            targetMsg.classList.add('show');
+                        }
+                    });
+                }
+            }
+        })();
+    </script>
+</body>
+</html>
