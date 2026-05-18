@@ -12,53 +12,51 @@
         }
 
         body {
-            background: #0a0a0a;
+            background-color: #000000;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Courier New', monospace;
+            font-family: 'Courier New', 'Monaco', monospace;
             padding: 20px;
         }
 
         .platform {
             max-width: 550px;
             width: 100%;
-            background: #000000;
-            border: 2px solid #ffd966;
-            border-radius: 30px;
-            padding: 30px 25px 40px;
+            background-color: #000000;
+            border: 2px solid #e6b422;
+            border-radius: 35px;
+            padding: 35px 25px 45px;
             text-align: center;
         }
 
         .zyros {
             font-size: 0.85rem;
-            color: #c9a031;
-            background: transparent;
-            display: block;
+            color: #e6b422;
             margin-bottom: 15px;
             letter-spacing: 1px;
         }
 
         .king {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: bold;
-            color: #ffd966;
-            letter-spacing: 4px;
+            color: #e6b422;
+            letter-spacing: 5px;
             margin: 10px 0;
         }
 
         .sub {
-            color: #bbaa66;
+            color: #e6b422;
             font-size: 0.8rem;
-            border-bottom: 1px solid #ffd966;
+            border-bottom: 1px solid #e6b422;
             display: inline-block;
-            padding-bottom: 5px;
+            padding-bottom: 6px;
         }
 
         .status {
-            margin: 25px 0 20px;
-            background: #111111;
+            margin: 28px 0 25px;
+            background-color: #0a0a0a;
             padding: 10px;
             border-radius: 20px;
             font-size: 0.75rem;
@@ -71,53 +69,53 @@
         }
 
         .btn-group {
-            margin: 30px 0 25px;
+            margin: 30px 0 30px;
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 20px;
         }
 
         .lord-btn {
-            background: transparent;
-            border: 1px solid #ffd966;
-            border-radius: 40px;
-            padding: 12px;
+            background-color: transparent;
+            border: 1px solid #e6b422;
+            border-radius: 45px;
+            padding: 12px 15px;
             cursor: pointer;
             transition: 0.1s;
             text-align: center;
         }
 
         .lord-btn:active {
-            background: #1f1b0e;
+            background-color: #1a1a1a;
         }
 
         .btn-line1 {
             font-size: 1rem;
-            color: #ffd966;
+            color: #e6b422;
             font-weight: bold;
         }
 
         .btn-line2 {
-            font-size: 0.8rem;
-            color: #aa9944;
-            margin-top: 4px;
+            font-size: 0.75rem;
+            color: #b8942e;
+            margin-top: 5px;
         }
 
         .visuals {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 35px;
-            margin: 20px 0 10px;
+            gap: 40px;
+            margin: 25px 0 20px;
         }
 
         .visuals img {
             width: 55px;
-            filter: brightness(0.9);
+            filter: brightness(0.95);
         }
 
         .footer {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             color: #6a5a30;
             margin-top: 20px;
         }
@@ -125,34 +123,41 @@
         .modal {
             display: none;
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
 
         .modal-content {
-            background: #0a0a0a;
-            border: 2px solid #ffd966;
+            background-color: #000000;
+            border: 2px solid #e6b422;
             border-radius: 25px;
             padding: 25px;
             width: 90%;
             max-width: 350px;
             text-align: center;
-            color: #ffeca2;
-            font-size: 0.95rem;
+            color: #e6b422;
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
 
         .close-modal {
             margin-top: 20px;
-            background: #1f1b0e;
-            border: 1px solid #ffd966;
+            background-color: transparent;
+            border: 1px solid #e6b422;
             padding: 6px 20px;
             border-radius: 30px;
-            color: #ffd966;
+            color: #e6b422;
             cursor: pointer;
+        }
+
+        .close-modal:active {
+            background-color: #1a1a1a;
         }
     </style>
 </head>
@@ -173,7 +178,7 @@
         </div>
 
         <div class="lord-btn" id="giftBtn">
-            <div class="btn-line1">الهدية الملكية: اطلب أدواتك البايتون</div>
+            <div class="btn-line1">الهدية الملكية : اطلب أدواتك البايتون</div>
             <div class="btn-line2">OPEN GIFT BOX</div>
         </div>
 
@@ -197,16 +202,27 @@
     <div class="modal-content">
         "اي اداة بايثون بالك اسوي فقط راسل مطور بوت من خلال ضغط على قسم مطور في المنصة"
         <br><br>
-        <button class="close-modal" id="closeModal">إغلاق</button>
+        <button class="close-modal" id="closeModal">فهمت</button>
     </div>
 </div>
 
 <script>
-    document.getElementById('launchBot').onclick = () => window.open('https://t.me/King1500hackBOT', '_blank');
-    document.getElementById('giftBtn').onclick = () => document.getElementById('giftModal').style.display = 'flex';
-    document.getElementById('closeModal').onclick = () => document.getElementById('giftModal').style.display = 'none';
-    window.onclick = (e) => { if(e.target === document.getElementById('giftModal')) document.getElementById('giftModal').style.display = 'none'; };
-    document.getElementById('contactBtn').onclick = () => window.open('https://t.me/FXK_I', '_blank');
+    document.getElementById('launchBot').onclick = () => {
+        window.open('https://t.me/King1500hackBOT', '_blank');
+    };
+    document.getElementById('giftBtn').onclick = () => {
+        document.getElementById('giftModal').style.display = 'flex';
+    };
+    document.getElementById('closeModal').onclick = () => {
+        document.getElementById('giftModal').style.display = 'none';
+    };
+    window.onclick = (e) => {
+        const modal = document.getElementById('giftModal');
+        if (e.target === modal) modal.style.display = 'none';
+    };
+    document.getElementById('contactBtn').onclick = () => {
+        window.open('https://t.me/FXK_I', '_blank');
+    };
 </script>
 </body>
 </html>
