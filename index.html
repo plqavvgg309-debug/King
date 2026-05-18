@@ -12,78 +12,58 @@
         }
 
         body {
-            background: radial-gradient(circle at 20% 30%, #0a0c16, #020202);
+            background: #0a0a0a;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Courier New', 'Monaco', monospace;
+            font-family: 'Courier New', monospace;
             padding: 20px;
         }
 
-        /* أنيميشن الخلفية */
-        @keyframes glowPulse {
-            0% { box-shadow: 0 0 15px rgba(80, 200, 50, 0.3); border-color: #5a9e3e; }
-            100% { box-shadow: 0 0 45px rgba(80, 200, 50, 0.7); border-color: #b5ff7a; }
-        }
-
-        @keyframes greenFire {
-            0% { text-shadow: 0 0 2px #6eff3e; }
-            100% { text-shadow: 0 0 12px #20ff00, 0 0 5px #0a5c00; }
-        }
-
         .platform {
-            max-width: 650px;
+            max-width: 550px;
             width: 100%;
-            background: rgba(2, 3, 10, 0.9);
-            backdrop-filter: blur(10px);
-            border: 2px solid #6aff3a;
-            border-radius: 50px;
-            padding: 30px 25px 42px;
+            background: #000000;
+            border: 2px solid #ffd966;
+            border-radius: 30px;
+            padding: 30px 25px 40px;
             text-align: center;
-            animation: glowPulse 1.8s infinite alternate;
-            transition: 0.3s;
         }
 
         .zyros {
-            font-size: 1rem;
-            color: #9bff6e;
-            background: #0a1206;
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-weight: bold;
-            border: 1px solid #6eff3a;
-            letter-spacing: 1px;
+            font-size: 0.85rem;
+            color: #c9a031;
+            background: transparent;
+            display: block;
             margin-bottom: 15px;
+            letter-spacing: 1px;
         }
 
         .king {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: #ffe28a;
-            text-shadow: 0 0 8px #ffc107;
-            letter-spacing: 8px;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd966;
+            letter-spacing: 4px;
+            margin: 10px 0;
         }
 
         .sub {
-            color: #bfffa2;
-            margin-top: 6px;
-            font-size: 0.85rem;
-            border-bottom: 1px solid #8eff5e;
+            color: #bbaa66;
+            font-size: 0.8rem;
+            border-bottom: 1px solid #ffd966;
             display: inline-block;
             padding-bottom: 5px;
         }
 
         .status {
             margin: 25px 0 20px;
-            background: #080e05;
-            padding: 12px;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: #c5ffa3;
-            border: 1px solid #3f9e2a;
+            background: #111111;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #7eff7e;
+            border: 1px solid #2a6230;
         }
 
         .vpn-badge {
@@ -91,74 +71,57 @@
         }
 
         .btn-group {
-            margin: 20px 0 30px;
+            margin: 30px 0 25px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 18px;
         }
 
         .lord-btn {
-            background: linear-gradient(95deg, #141a0e, #1d2616);
-            border: 2px solid #85ff5e;
-            border-radius: 60px;
-            padding: 14px 12px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #e6ffcf;
+            background: transparent;
+            border: 1px solid #ffd966;
+            border-radius: 40px;
+            padding: 12px;
             cursor: pointer;
-            transition: 0.15s linear;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 25px;
-            gap: 15px;
-        }
-
-        .lord-btn span:first-child {
-            font-size: 1.1rem;
-        }
-
-        .lord-btn span:last-child {
-            font-family: monospace;
-            letter-spacing: 1px;
-            color: #c6ff98;
+            transition: 0.1s;
+            text-align: center;
         }
 
         .lord-btn:active {
-            transform: scale(0.97);
+            background: #1f1b0e;
         }
 
-        /* عناصر النار والصور */
+        .btn-line1 {
+            font-size: 1rem;
+            color: #ffd966;
+            font-weight: bold;
+        }
+
+        .btn-line2 {
+            font-size: 0.8rem;
+            color: #aa9944;
+            margin-top: 4px;
+        }
+
         .visuals {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 35px;
-            margin: 25px 0 15px;
-            flex-wrap: wrap;
+            margin: 20px 0 10px;
         }
 
         .visuals img {
-            width: 70px;
-            filter: drop-shadow(0 0 8px #6eff3a);
-            transition: 0.2s;
-        }
-
-        .green-fire {
             width: 55px;
-            filter: drop-shadow(0 0 12px #34ff1a) brightness(1.2);
-            animation: greenFire 1s infinite alternate;
+            filter: brightness(0.9);
         }
 
         .footer {
-            font-size: 0.7rem;
-            color: #7f9a6b;
-            margin-top: 25px;
-            border-top: 1px dashed #457a2a;
-            padding-top: 15px;
+            font-size: 0.65rem;
+            color: #6a5a30;
+            margin-top: 20px;
         }
 
-        /* مودال الهدية */
         .modal {
             display: none;
             position: fixed;
@@ -171,96 +134,79 @@
         }
 
         .modal-content {
-            background: #0b0f07;
-            border: 2px solid #93ff6e;
-            border-radius: 35px;
-            padding: 30px 25px;
-            max-width: 90%;
-            width: 400px;
+            background: #0a0a0a;
+            border: 2px solid #ffd966;
+            border-radius: 25px;
+            padding: 25px;
+            width: 90%;
+            max-width: 350px;
             text-align: center;
-            color: #f2ffc2;
-            font-size: 1.1rem;
-            font-weight: bold;
+            color: #ffeca2;
+            font-size: 0.95rem;
         }
 
         .close-modal {
-            margin-top: 25px;
-            background: #2a3522;
-            border: none;
-            padding: 8px 28px;
-            border-radius: 50px;
-            color: #bfff96;
-            font-weight: bold;
+            margin-top: 20px;
+            background: #1f1b0e;
+            border: 1px solid #ffd966;
+            padding: 6px 20px;
+            border-radius: 30px;
+            color: #ffd966;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
 <div class="platform">
-    <div class="zyros">⚡ ZYROS_CORE_v2.06.exe ⚡</div>
+    <div class="zyros">ZYROS_CORE_v2.06.exe</div>
     <div class="king">KING</div>
     <div class="sub">المنصة المسائية الرسمية للورد</div>
 
     <div class="status">
-        🔥 CORE STATUS: ACTIVE // <span class="vpn-badge">NO_VPN_BYPASS {ONLINE}</span> 🔥
+        CORE STATUS: ACTIVE // <span class="vpn-badge">NO_VPN_BYPASS {ONLINE}</span>
     </div>
 
     <div class="btn-group">
         <div class="lord-btn" id="launchBot">
-            <span>🤖 تشغيل بوت المساعد الملكي</span>
-            <span>LAUNCH KING BOT</span>
+            <div class="btn-line1">تشغيل بوت المساعد الملكي</div>
+            <div class="btn-line2">LAUNCH KING BOT</div>
         </div>
 
         <div class="lord-btn" id="giftBtn">
-            <span>🎁 الهدية الملكية: اطلب أدواتك البايتون</span>
-            <span>OPEN GIFT BOX</span>
+            <div class="btn-line1">الهدية الملكية: اطلب أدواتك البايتون</div>
+            <div class="btn-line2">OPEN GIFT BOX</div>
         </div>
 
-        <div class="lord-btn" id="contactLord">
-            <span>👑 التواصل المباشر مع اللورد</span>
-            <span>CONTACT LORD KING</span>
+        <div class="lord-btn" id="contactBtn">
+            <div class="btn-line1">التواصل المباشر مع اللورد</div>
+            <div class="btn-line2">CONTACT LORD KING</div>
         </div>
     </div>
 
-    <!-- جمجمة + نينجا + نار خضراء -->
     <div class="visuals">
         <img src="https://cdn-icons-png.flaticon.com/512/3457/3457013.png" alt="ninja">
-        <img class="green-fire" src="https://cdn-icons-png.flaticon.com/512/1925/1925996.png" alt="green fire">
         <img src="https://cdn-icons-png.flaticon.com/512/489/489962.png" alt="skull">
     </div>
 
     <div class="footer">
-        🧨 الولاء المطلق للورد الأعلى 🧨
+        الولاء المطلق للورد الأعلى
     </div>
 </div>
 
-<!-- مودال الهدية -->
 <div id="giftModal" class="modal">
     <div class="modal-content">
-        🔥✨ الهدية الملكية ✨🔥<br><br>
         "اي اداة بايثون بالك اسوي فقط راسل مطور بوت من خلال ضغط على قسم مطور في المنصة"
         <br><br>
-        <button class="close-modal" id="closeModal">فهمـت</button>
+        <button class="close-modal" id="closeModal">إغلاق</button>
     </div>
 </div>
 
 <script>
-    document.getElementById('launchBot').onclick = () => {
-        window.open('https://t.me/King1500hackBOT', '_blank');
-    };
-    document.getElementById('giftBtn').onclick = () => {
-        document.getElementById('giftModal').style.display = 'flex';
-    };
-    document.getElementById('closeModal').onclick = () => {
-        document.getElementById('giftModal').style.display = 'none';
-    };
-    window.onclick = (e) => {
-        const modal = document.getElementById('giftModal');
-        if(e.target === modal) modal.style.display = 'none';
-    };
-    document.getElementById('contactLord').onclick = () => {
-        window.open('https://t.me/FXK_I', '_blank');
-    };
+    document.getElementById('launchBot').onclick = () => window.open('https://t.me/King1500hackBOT', '_blank');
+    document.getElementById('giftBtn').onclick = () => document.getElementById('giftModal').style.display = 'flex';
+    document.getElementById('closeModal').onclick = () => document.getElementById('giftModal').style.display = 'none';
+    window.onclick = (e) => { if(e.target === document.getElementById('giftModal')) document.getElementById('giftModal').style.display = 'none'; };
+    document.getElementById('contactBtn').onclick = () => window.open('https://t.me/FXK_I', '_blank');
 </script>
 </body>
 </html>
